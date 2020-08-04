@@ -18,6 +18,9 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 const useStyles=makeStyles(theme=>({
+    appbar:{
+        zIndex:theme.zIndex.modal+1
+    },
     toolbarMargin:{
         ...theme.mixins.toolbar,
         marginBottom:"1em",
@@ -89,7 +92,8 @@ drawerIcon:{
     width:"50px"
 },
 drawer:{
-    backgroundColor:theme.palette.common.blue
+    backgroundColor:theme.palette.common.blue,
+    width:"40%"
 },
 drawerItem:{
     ...theme.typography.tab,
@@ -160,10 +164,10 @@ const tabs=(
 
         </Tabs>
         <Button component={Link} to="/estimate" variant="contained" color="secondary" className={classes.button}>Free Estimate</Button>
-        <Menu elevation={0} classes={{paper:classes.menu}} MenuListProps={{onMouseLeave:handleClose}} id="simple-menu" anchorEl={anchorEl} open={openMenu} onClose={handleClose}>
+        <Menu style={{zIndex:1302}} elevation={0} classes={{paper:classes.menu}} MenuListProps={{onMouseLeave:handleClose}} id="simple-menu" anchorEl={anchorEl} open={openMenu} onClose={handleClose}>
        
    {menuOptions.map((option,i)=>(
-   <MenuItem key={option} selected={i===selectedIndex&&value==1} component={Link} to={option.link} classes={{root:classes.menuItem}} onClick={(e)=>{handleMenuItemClick(e,i);setvalue(1);handleClose()}} >{option.name}</MenuItem>
+   <MenuItem  key={option} selected={i===selectedIndex&&value==1} component={Link} to={option.link} classes={{root:classes.menuItem}} onClick={(e)=>{handleMenuItemClick(e,i);setvalue(1);handleClose()}} >{option.name}</MenuItem>
    ))}
         </Menu>
     </>
@@ -171,6 +175,7 @@ const tabs=(
 const drawer=(
     <>
     <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={openDrawer} onClose={()=>setOpenDrawer(false)} onOpen={()=>setOpenDrawer(true)} classes={{paper:classes.drawer}} >
+        <div className={classes.toolbarMargin} />
       <ListItem selected={value==0} onClick={()=>{setOpenDrawer(false);setvalue(0)}} divider button component={Link} to="/">
      <ListItemText className={classes.drawerItem} disableTypography>Home</ListItemText>
       </ListItem>  
@@ -197,7 +202,7 @@ const drawer=(
 )
 return(
     <>
-    <AppBar variant="dense"  position="fixed" color="primary">
+    <AppBar className={classes.appbar} variant="dense"  position="fixed" color="primary">
    <Toolbar disableGutters>
        <Button disableRipple onClick={()=>{setvalue(0)}} className={classes.logoContainer} component={Link} to="/">
     <img  className={classes.logo}src={logo} alt="company logo"/></Button>
