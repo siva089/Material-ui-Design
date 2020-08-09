@@ -66,7 +66,10 @@ marginLeft:"25px"
         fontSize:"1rem",
         textTransform:'none',
         // height:"45px",
-        color:"white"
+        color:"white",
+        "&:hover":{
+            backgroundColor:theme.palette.secondary.light
+        }
     },
 menu:{
     backgroundColor:theme.palette.common.blue,
@@ -108,15 +111,15 @@ drawerItemSelected:{
     opacity:1
 }
 }))
-export default function Header(props){
+export default function Header({value,setvalue,selectedIndex,setSelectedIndex}){
 const classes=useStyles()
 const theme=useTheme();
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const matches=useMediaQuery(theme.breakpoints.down('md'))
-const [value, setvalue] = useState(0)
+
 const [anchorEl,setAnchorEl]=useState(null)
 const [openMenu,setOpenMenu]=useState(false)
-const [selectedIndex,setSelectedIndex]=useState(0)
+
 const [openDrawer,setOpenDrawer]=useState(false)
 const handleClick=(e)=>{
     setAnchorEl(e.currentTarget)
