@@ -14,6 +14,7 @@ import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
 import revolutionBackground from "../assets/repeatingBackground.svg"
 import infoBackground  from "../assets/infoBackground.svg"
+import CallToAction from "./ui/CalltoAction"
 const useStyles=makeStyles(theme=>({
  mainContainer:{
      "marginTop":"5em",
@@ -113,6 +114,7 @@ export default function LandingPage(){
     const classes=useStyles();
     const theme=useTheme()
     const matchesSm=useMediaQuery(theme.breakpoints.down("sm"))
+    const matchesXs=useMediaQuery(theme.breakpoints.down("xs"))
     const defaultOptions={
         loop: true,
         autoplay: true, 
@@ -241,18 +243,42 @@ Optimize for search engines and build for speed.
     <div className={classes.revolutionBackground}/>
     </Grid>
 </Grid>
-<Grid item>
+
+ <Grid item>
     {/* information block */}
     <Grid container style={{height:"80em"}} alignItems="center">
-        <Grid item style={{position:"absolute",marginLeft:"5em"}}>
+      <Grid  item container style={{position:"absolute"}} direction={matchesSm?"column":"row"} textAlign={matchesXs?"center":"inherit"}>
+      <Grid sm  item style={{marginLeft:"5em"}}>
       <Grid direction="column" container>
-     <Typography style={{color:"white"}} variant="h2">About Us</Typography>
-     <Typography variant="subtitle2">Let's get personal.</Typography>
+      <Typography style={{color:"white"}} variant="h2">About Us</Typography>
+      <Typography variant="subtitle2">Let's get personal.</Typography>
+      <Grid item>
+      <Button style={{color:"white",borderColor:"white"}} className={classes.learnButton} variant="outlined">
+      <span style={{marginRight:10}}>Learn More</span>
+      <ButtonArrow width={10} height={10} fill="white"/>
+      </Button>
       </Grid>
-        </Grid>
+      </Grid>
+     </Grid>
+     <Grid sm item style={{marginRight:"5em"}}>
+     <Grid direction="column" container>
+     <Typography style={{color:"white"}} variant="h2">Contact Us</Typography>
+     <Typography variant="subtitle2">Say hello!</Typography>
+     <Grid item>
+     <Button style={{color:"white",borderColor:"white"}} className={classes.learnButton} variant="outlined">
+            <span style={{marginRight:10}}>Learn More</span>
+            <ButtonArrow width={10} height={10} fill="white"/>
+            </Button>
+            </Grid>
+      </Grid>
+     </Grid>
+     </Grid> 
      <div className={classes.infoBackground} />
     </Grid>
-
+<Grid item>
+    {/* call to action */}
+    <CallToAction/>
+</Grid>
 </Grid>
       </Grid> 
 }
