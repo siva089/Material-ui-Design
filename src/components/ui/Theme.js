@@ -68,6 +68,10 @@ color:arcblue
         fontSize:"1rem",
         "textTransform":"none",
         "color":"white"
+      },body1:{
+       color:arcGrey,
+       fontWeight:300,
+        fontSize:"1.25rem"
       }
     }
 })
