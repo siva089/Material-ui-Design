@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden"
-
+import CallToAction from "./ui/CalltoAction"
 
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg"
@@ -62,7 +62,11 @@ mainContainer:{
    paddingLeft:"5em",
    paddingRight:'5em',
    paddingTop:"2em",
-   paddingBottom:"10em"
+   paddingBottom:"10em",
+   [theme.breakpoints.down("sm")]:{
+       paggingLeft:"1.5em",
+       paddingRight:"1.5em"
+   }
 },
 itemContainer:{
     maxWidth:"40em"
@@ -134,37 +138,37 @@ return(
       <Grid style={{marginBottom:matchesMd?"15em":undefined}} item container md className={classes.itemContainer}>
       <Grid item container direction="column" md>
       <Grid item>
-<Typography  variant="h4">Digital documents and data</Typography>
+<Typography align={matchesSm?"center":undefined}  variant="h4">Digital documents and data</Typography>
       </Grid>
 <Grid item>
-<Typography paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt?</Typography>
-<Typography paragraph variant="body1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, sint doloribus! Ex alias eos commodi libero, fuga asperiores veniam illo voluptatem! Quas odio earum voluptates?</Typography>
-<Typography paragraph variant="body1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus quisquam, eos vel pariatur eius.</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt?</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, sint doloribus! Ex alias eos commodi libero, fuga asperiores veniam illo voluptatem! Quas odio earum voluptates?</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus quisquam, eos vel pariatur eius.</Typography>
 </Grid>
 </Grid>
 <Grid item md>
     <Lottie options={documentOptions} style={{maxHeight:275,maxWidth:275,minHeight:250}}/>
 </Grid>
 </Grid>
-<Grid item container md className={classes.itemContainer} >
+<Grid item container md direction={matchesSm?"column":"row"} className={classes.itemContainer} >
 <Grid item md>
     <Lottie options={scaleoptions} style={{maxWidth:280,minHeight:200}}/>
 </Grid>
       <Grid item container direction="column" md>
       <Grid item>
-<Typography align="right"  variant="h4">Scale</Typography>
+<Typography align={matchesSm?"center":"right"} variant="h4">Scale</Typography>
       </Grid>
 <Grid item>
-<Typography align="right" paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
+<Typography align={matchesSm?"center":"right"} paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
 </Grid>
 </Grid>
 
 </Grid>
 </Grid>
-<Grid item container direction="row" style={{marginTop:"20em",marginBottom:"20em"}}>
+<Grid item container direction={matchesSm?"column":"row"} style={{marginTop:"20em",marginBottom:"20em"}}>
 <Grid item container direction="column" alignItems="center">
     <Grid item>
-        <img src={roots} alt="tree with roots" height="450em" width="450em" />
+        <img src={roots} alt="tree with roots" height={matchesSm?"300em":"450em"} width={matchesSm?"300em":"450em"} />
     </Grid>
     <Grid item className={classes.itemContainer}>
 <Typography variant="h4" align="center" gutterBottom>Root Case Analysis</Typography>
@@ -179,9 +183,9 @@ return(
 <Typography  variant="h4">Automation</Typography>
       </Grid>
 <Grid item>
-<Typography paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt?</Typography>
-<Typography paragraph variant="body1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, sint doloribus! Ex alias eos commodi libero, fuga asperiores veniam illo voluptatem! Quas odio earum voluptates?</Typography>
-<Typography paragraph variant="body1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus quisquam, eos vel pariatur eius.</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt?</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus, sint doloribus! Ex alias eos commodi libero, fuga asperiores veniam illo voluptatem! Quas odio earum voluptates?</Typography>
+<Typography align={matchesSm?"center":undefined} paragraph variant="body1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit necessitatibus quisquam, eos vel pariatur eius.</Typography>
 </Grid>
 </Grid>
 <Grid item md>
@@ -194,16 +198,19 @@ return(
 </Grid>
       <Grid item container direction="column" md>
       <Grid item>
-<Typography align="right"  variant="h4">User experience design</Typography>
+<Typography align={matchesSm?"center":"right"}  variant="h4">User experience design</Typography>
       </Grid>
 <Grid item>
-<Typography align="right" paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
-<Typography align="right" paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
+<Typography align={matchesSm?"center":"right"} paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
+<Typography align={matchesSm?"center":"right"} paragraph variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, deserunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cum, aut adipisci excepturi possimus placeat debitis expedita blanditiis officia suscipit!</Typography>
 
 </Grid>
 </Grid>
 
 </Grid>
+</Grid>
+<Grid item>
+    <CallToAction setValue={props.setValue}/>
 </Grid>
 </Grid>
 )
