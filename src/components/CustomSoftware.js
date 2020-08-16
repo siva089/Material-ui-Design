@@ -82,6 +82,7 @@ return(
     <Grid container direction="column" className={classes.mainContainer}>
         <Grid item container direction="row" justify={matchesMd?"center":undefined}>
             <Hidden mdDown>
+  
            <Grid item className={classes.arrowContainer} style={{marginRight:"1em",marginLeft:"-3.5em"}}>
              <IconButton style={{backgroundColor:"transparent"}} component={Link} to="/services" onClick={()=>props.setSelectedIndex(0)}>
                  <img src={backArrow} alt="back to Services page"/>
@@ -99,7 +100,7 @@ return(
           </Grid>
         </Grid>
         <Hidden mdDown>
-        <Grid className={classes.arrowContainer} item>
+        <Grid style={{ marginLeft: "auto"}} className={classes.arrowContainer} item>
       <IconButton style={{backgroundColor:"transparent"}} component={Link} to="/mobileapps" onClick={()=>props.setSelectedIndex(2)}>
           {/* <img src= alt=""/> */}
           <img src={forwardArrow} alt='Forwart to ios android development'/>
