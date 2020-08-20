@@ -72,6 +72,29 @@ color:arcblue
        color:arcGrey,
        fontWeight:300,
         fontSize:"1.25rem"
+      },
+     
+    },
+    overrides:{
+      MuiInputLabel:{
+        root:{
+          color:arcblue,
+          fontSize:'1rem'
+        }
+      },
+      MuiInput:{
+        underline:{
+          "&:before":{
+            borderBottom:`2px solid ${arcblue}`
+          },
+          "&:hover:not($disabled):not($focused):not($error):before":{
+            borderBottom:`2px solid ${arcblue}`
+          }
+        },
+        root:{
+          color:arcGrey,
+          fontWeight:300
+        }
       }
     }
 })
