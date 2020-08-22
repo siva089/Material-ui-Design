@@ -12,7 +12,9 @@ import airplane from "../assets/send.svg"
 import ButtonArrow from "./ui/ButtonArrow"
 import Dialog from "@material-ui/core/Dialog"
 import DialogContent from "@material-ui/core/DialogContent"
-
+import axios from "axios"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import SnackBar from "@material-ui/core/Snackbar"
 const useStyles=makeStyles((theme)=>({
 // regex
     background:{
@@ -76,6 +78,8 @@ const [message,setMessage]=useState('')
 const [emailHelper,setEmailHelper]=useState('')
 const [phoneHelper,setPhoneHelper]=useState('')
 const [open,setOpen]=useState(false)
+const [loading,setLoading]=useState(false)
+const [alert,setAlert]=useState({open:false,message:"",backgroundColor:""})
 const onChange=event=>{
     let valid;
     switch(event.target.id){
@@ -103,6 +107,27 @@ const onChange=event=>{
              break;   
     }
 }
+const onConfirm=()=>{
+    setLoading(true)
+    axios.get('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res=>{
+        setLoading(false)
+        setOpen(false)
+        setName("")
+        setEmail("")
+        setPhone("")
+        setMessage("")
+      setAlert({open:true,message:"message sent successfully",backgroundColor:"#4BB543"})
+    }).catch(err=>{
+        setLoading(false)
+        console.log(err);
+    })
+}
+
+const ButtonContents=(<>
+     Send Message
+    <img src={airplane} alt="paper airplane" style={{marginLeft:"1em"}} />
+</>)
 
     return (
     <Grid  container direction="row">
@@ -144,8 +169,8 @@ const onChange=event=>{
 <Grid item container justify="center" style={{marginTop:"2em"}}>
     <Button onClick={()=>setOpen(true)} 
     disabled={name.length==0||phone.length==0||email.length==0||message.length==0||emailHelper.length!==0||phoneHelper.length!==0} 
-    className={classes.sendButton} variant="contained">Send Message
-    <img src={airplane} alt="paper airplane" style={{marginLeft:"1em"}} />
+    className={classes.sendButton} variant="contained">
+        {ButtonContents}
     </Button>
 </Grid>
     </Grid>
@@ -203,16 +228,17 @@ Take Advantage of 21st century
 </Button>
 </Grid>
 <Grid item>
-<Button onClick={()=>setOpen(true)} 
+<Button onClick={onConfirm} 
     disabled={name.length==0||phone.length==0||email.length==0||message.length==0||emailHelper.length!==0||phoneHelper.length!==0} 
-    className={classes.sendButton} variant="contained">Send Message
-    <img src={airplane} alt="paper airplane" style={{marginLeft:"1em"}} />
+    className={classes.sendButton} variant="contained">
+{loading?<CircularProgress size={30}/>:ButtonContents}
     </Button>
 </Grid>
 </Grid>
 </Grid>
 </DialogContent>
 </Dialog>
+<SnackBar open={alert.open} message={alert.message} ContentProps={{backgroundColor:alert.backgroundColor}} anchorOrigin={{vertical:"top",horizontal:"center"}} onClose={{...alert,open:false}} autoHideDuration={4000}/>
 
     </Grid>)
 
